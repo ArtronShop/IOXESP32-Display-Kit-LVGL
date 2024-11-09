@@ -1,0 +1,16 @@
+#include <Wire.h>
+ 
+void setup() {
+  Serial.begin(115200);
+  
+  Wire.begin(I2C_SDA_PIN, I2C_SCL_PIN, 400E3);
+  touch.init();
+}
+ 
+ 
+void loop() {
+    uint16_t x, y;
+    uint8_t touchPoint = touch.read(&x, &y);
+    Serial.printf("Touched: %d, x: %d, y: %d\n", touchPoint, x, y);
+    delay(100);
+}
